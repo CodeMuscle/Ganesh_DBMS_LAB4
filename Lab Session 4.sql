@@ -154,7 +154,13 @@ as t3 where t3.cat_id = category.cat_id group by t3.cat_id;
 
 
 -- Query 7
-select customer.cus_gender, customer.cus_name from customer where cus_name like 'A%';
+select product.PRO_ID, product.PRO_NAME from product 
+	join supplier_pricing on product.PRO_ID = supplier_pricing.PRO_ID
+		join `order` on `order`.PRICING_ID = supplier_pricing.PRICING_ID where ORD_DATE > '2021-10-05';
+
+select `order`.ORD_ID, PRO_NAME, ORD_AMOUNT, ORD_DATE from `order` 
+	join supplier_pricing on `order`.PRICING_ID = supplier_pricing.PRICING_ID 
+		join product on supplier_pricing.PRO_ID = product.PRO_ID where CUS_ID = 2;
 
 -- Query 8
 select customer.cus_gender, customer.cus_name from customer where cus_name like 'A%'; 
